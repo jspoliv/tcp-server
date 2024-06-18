@@ -47,7 +47,7 @@ func NewServer() (s *Server) {
 	s = &Server{
 		peers:    NewPeer(),
 		msg:      make(chan Message),
-		shutdown: make(chan os.Signal),
+		shutdown: make(chan os.Signal, 1),
 	}
 	signal.Notify(s.shutdown, syscall.SIGINT, syscall.SIGTERM)
 	return
